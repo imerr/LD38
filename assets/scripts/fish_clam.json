@@ -1,0 +1,38 @@
+{
+  "type": "clam",
+  "size": [45, 51],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "animations": {
+      "default": {
+        "frames": [0]
+      },
+      "open": {
+        "frames": [1]
+      }
+    }
+  },
+  "body": {
+    "type": "dynamic",
+    "shapes": [
+      {
+        "type": "box",
+        "x": 0,
+        "y": 16,
+        "width": 39,
+        "height": 10
+      }
+    ]
+  },
+  "drops" : [
+    {
+      "script": "assets/scripts/drop_pearl.json",
+      "chance": 0.5,
+      "position": [
+        [-13, 8],
+        [8, 16]
+      ]
+    }
+  ]
+}

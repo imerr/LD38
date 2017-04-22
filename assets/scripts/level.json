@@ -1,0 +1,85 @@
+{
+  "size": [1024, 576],
+  "debug": false,
+  "gravity": [0, 6],
+  "ui": [
+    // money
+    {
+      "type": "sprite",
+      "size": [38, 38],
+      "position": [976, 10],
+      "sprite": {
+        "texture": "assets/images/coin.png"
+      }
+    },
+    // Money text
+    {
+      "type": "text",
+      "identifier": "money",
+      "position": [971, 20],
+      "text": {
+        "font": "assets/lcd_solid.ttf",
+        "size": 20,
+        "text": 0,
+        "align": "right"
+      }
+    }
+  ],
+  "children": [
+    {
+      "type": "sprite",
+      "size": [1024, 576],
+      "sprite": {
+        "texture": "assets/images/background.png"
+      }
+    },
+    {
+      "type": "sprite",
+      "size": [670, 480],
+      "position": [100, 50],
+      "sprite": {
+        "texture": "assets/images/aquarium_back.png"
+      }
+    },
+    {
+      "identifier": "aquariumContainer",
+      "children": [
+        {
+          "position": [200, 0],
+          "childData": "assets/scripts/fish_clam.json"
+        }
+      ]
+    },
+    {
+      "type": "sprite",
+      "size": [670, 480],
+      "position": [100, 50],
+      "sprite": {
+        "texture": "assets/images/aquarium_front.png"
+      },
+      "body": {
+        "type": "static",
+        "shapes": [
+          {
+            "type": "chain",
+            "points": [
+              [15, 0],
+              [15, 350],
+              [50, 330],
+              [90, 350],
+              [120, 330],
+              [150, 350],
+              [310, 320],
+              [380, 320],
+              [470, 370],
+              [560, 340],
+              [610, 340],
+              [640, 310],
+              [640, 0]
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
