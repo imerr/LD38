@@ -5,10 +5,9 @@
 #ifndef LD38_FISH_HPP
 #define LD38_FISH_HPP
 #include <unordered_set>
+#include "Buoyant.hpp"
 
-#include <Engine/SpriteNode.hpp>
-
-class Fish: public engine::SpriteNode {
+class Fish: public Buoyant {
 public:
 	struct Drop {
 		std::string script;
@@ -25,6 +24,7 @@ protected:
 public:
 	Fish(engine::Scene* scene);
 	virtual ~Fish();
+	virtual bool CanDrop();
 
 protected:
 	virtual void OnUpdate(sf::Time interval);

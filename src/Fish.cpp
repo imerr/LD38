@@ -4,10 +4,12 @@
 
 #include <Engine/util/Random.hpp>
 #include <Engine/Factory.hpp>
+#include <Engine/Game.hpp>
 #include <Engine/util/json.hpp>
 #include "Fish.hpp"
+#include "Level.hpp"
 
-Fish::Fish(engine::Scene* scene) : SpriteNode(scene), m_dropTimer(0) {
+Fish::Fish(engine::Scene* scene) : Buoyant(scene), m_dropTimer(0) {
 	m_dropDeleteHandler = new engine::EventHandlerWrapper<void, engine::Node*>([this](engine::Node* node) {
 		for (Drop& drop : m_drops) {
 			if (drop.activeDrops.erase(node) > 0) {
@@ -16,6 +18,18 @@ Fish::Fish(engine::Scene* scene) : SpriteNode(scene), m_dropTimer(0) {
 			}
 		}
 	});
+	m_clickHandler.reset(m_scene->GetGame()->OnMouseClick.MakeHandler(
+			[this](const sf::Mouse::Button& button, const sf::Vector2f& pos, bool down) {
+				return down && IsIn(pos.x, pos.y);
+			}, [this](const sf::Mouse::Button& button, const sf::Vector2f& pos, bool down) {
+				float a = engine::b2Angle(pos, m_scene->MeterToPixel(m_body->GetWorldCenter()));
+				auto impulse = b2Vec2(2 * cos(a), 3 * sin(a));
+				m_body->ApplyLinearImpulse(
+						impulse,
+						m_scene->PixelToMeter(pos),
+						true);
+				return true;
+			}, this));
 }
 
 Fish::~Fish() {
@@ -24,10 +38,11 @@ Fish::~Fish() {
 			dropNode->OnDelete.RemoveHandler(m_dropDeleteHandler);
 		}
 	}
+	m_scene->GetGame()->OnMouseClick.RemoveHandler(m_clickHandler.get());
 }
 
 bool Fish::initialize(Json::Value& root) {
-	if (!engine::SpriteNode::initialize(root)) {
+	if (!Buoyant::initialize(root)) {
 		return false;
 	}
 	for (auto& d : root["drops"]) {
@@ -47,10 +62,12 @@ bool Fish::initialize(Json::Value& root) {
 		drop.max = static_cast<uint16_t>(d.get("max", 100).asUInt());
 		m_drops.push_back(drop);
 	}
+	m_buoyancy = root.get("buoyancy", 0.0).asFloat();
 	return true;
 }
 
 void Fish::OnUpdate(sf::Time interval) {
+	Buoyant::OnUpdate(interval);
 	m_dropTimer += interval.asSeconds();
 	while (m_dropTimer > 1) {
 		m_dropTimer -= 1;
@@ -59,6 +76,9 @@ void Fish::OnUpdate(sf::Time interval) {
 }
 
 void Fish::TryDrop() {
+	if (!CanDrop()) {
+		return;
+	}
 	engine::RandomFloat<float> r(0, 1);
 	for (Drop& drop: m_drops) {
 		if (drop.activeDrops.size() < drop.max && r() < drop.chance) {
@@ -69,4 +89,8 @@ void Fish::TryDrop() {
 			node->OnDelete.AddHandler(m_dropDeleteHandler);
 		}
 	}
+}
+
+bool Fish::CanDrop() {
+	return true;
 }

@@ -5,18 +5,16 @@
 #ifndef LD38_DROP_HPP
 #define LD38_DROP_HPP
 
+#include <SFML/Window/Mouse.hpp>
+#include "Buoyant.hpp"
 
-#include <Engine/SpriteNode.hpp>
-
-class Drop: public engine::SpriteNode {
+class Drop: public Buoyant {
 protected:
-	engine::BaseEventHandler* m_clickHandler;
+	std::unique_ptr<engine::BaseEventHandler>  m_clickHandler;
 	int32_t m_value;
 public:
 	Drop(engine::Scene* scene);
 	virtual ~Drop();
-
-	bool IsIn(float x, float y);
 
 	void PickUp();
 

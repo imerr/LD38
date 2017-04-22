@@ -8,8 +8,11 @@ class Clam: public Fish {
 public:
 	Clam(engine::Scene* scene);
 
+	virtual bool CanDrop();
+
 protected:
 	virtual void OnUpdate(sf::Time interval);
+
 };
 
 

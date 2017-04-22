@@ -6,35 +6,18 @@
 #include "Level.hpp"
 #include <Engine/Game.hpp>
 
-Drop::Drop(engine::Scene* scene) : SpriteNode(scene) {
-	m_clickHandler = m_scene->GetGame()->OnMouseClick.MakeHandler(
+Drop::Drop(engine::Scene* scene) : Buoyant(scene) {
+	m_clickHandler.reset(m_scene->GetGame()->OnMouseClick.MakeHandler(
 			[this](const sf::Mouse::Button& button, const sf::Vector2f& pos, bool down) {
 				return IsIn(pos.x, pos.y);
 			}, [this](const sf::Mouse::Button& button, const sf::Vector2f& pos, bool down) {
 				PickUp();
 				return true;
-			}, this);
+			}, this));
 }
 
 Drop::~Drop() {
-	m_scene->GetGame()->OnMouseClick.RemoveHandler(m_clickHandler);
-}
-
-bool Drop::IsIn(float x, float y) {
-	if (m_body) {
-		auto f = m_body->GetFixtureList();
-		while (f) {
-			if (f->TestPoint(b2Vec2(x / m_scene->GetPixelMeterRatio(), y / m_scene->GetPixelMeterRatio()))) {
-				return true;
-			}
-			f = f->GetNext();
-		}
-	} else {
-		sf::Rect<float> r;
-		r = GetGlobalTransform().transformRect(r);
-		r.contains(x, y);
-	}
-	return false;
+	m_scene->GetGame()->OnMouseClick.RemoveHandler(m_clickHandler.get());
 }
 
 void Drop::PickUp() {
@@ -45,7 +28,7 @@ void Drop::PickUp() {
 }
 
 bool Drop::initialize(Json::Value& root) {
-	if (!engine::SpriteNode::initialize(root)) {
+	if (!Buoyant::initialize(root)) {
 		return false;
 	}
 	auto d = root["drop"];

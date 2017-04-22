@@ -16,6 +16,7 @@
   },
   "body": {
     "type": "dynamic",
+    "linearDamping": 0.4,
     "shapes": [
       {
         "type": "box",
@@ -23,18 +24,29 @@
         "y": 16,
         "width": 39,
         "height": 10
+      },
+      { // Shape to get the center of mass right, doesnt collide with anything
+        "type": "box",
+        "x": 0,
+        "y": 14.5,
+        "width": 39,
+        "height": 25,
+        "mask": 65535,
+        "category": 0,
+        "density": 10
       }
     ]
   },
   "drops": [
     {
       "script": "assets/scripts/drop_pearl.json",
-      "chance": 0.005,
+      "chance": 0.5,
       "position": [
         [-13, 8],
         [8, 16]
       ],
       "max": 1
     }
-  ]
+  ],
+  "buoyancy": 0.9
 }
