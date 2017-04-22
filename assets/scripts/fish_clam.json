@@ -40,7 +40,7 @@
   "drops": [
     {
       "script": "assets/scripts/drop_pearl.json",
-      "chance": 0.5,
+      "chance": 0.005,
       "position": [
         [-13, 8],
         [8, 16]

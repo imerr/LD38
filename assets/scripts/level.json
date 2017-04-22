@@ -48,6 +48,10 @@
         {
           "position": [200, 0],
           "childData": "assets/scripts/fish_clam.json"
+        },
+        {
+          "position": [400, 0],
+          "childData": "assets/scripts/fish_goldfish.json"
         }
       ]
     },

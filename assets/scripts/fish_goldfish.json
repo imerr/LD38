@@ -1,0 +1,45 @@
+{
+  "type": "fish",
+  "size": [57, 32],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "animations": {
+      "swim": {
+        "frames": [11, 12, 11, 13],
+        "speed": 0.1
+      },
+      "default": {
+        "frames": [11, 14, 15, 16, 17],
+        "speed": 0.2
+      }
+    }
+  },
+  "body": {
+    "type": "dynamic",
+    "linearDamping": 0.4,
+    "fixedRotation": true,
+    "shapes": [
+      {
+        "type": "box",
+        "x": 0,
+        "y": 0,
+        "width": 40,
+        "height": 20,
+        "density": 10
+      }
+    ]
+  },
+  "drops": [
+    {
+      "script": "assets/scripts/drop_poop.json",
+      "chance": 0.01,
+      "position": [
+        [-13, 8],
+        [8, 16]
+      ],
+      "max": 0
+    }
+  ],
+  "buoyancy": 1
+}
