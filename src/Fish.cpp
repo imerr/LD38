@@ -31,7 +31,7 @@ bool Fish::initialize(Json::Value& root) {
 		return false;
 	}
 	for (auto& d : root["drops"]) {
-		Drop drop;
+		Drop drop{};
 		drop.script = d.get("script", "").asString();
 		if (drop.script == "") {
 			std::cerr << "No script for drop - skipping" << std::endl;
@@ -44,6 +44,7 @@ bool Fish::initialize(Json::Value& root) {
 		drop.position[0] = engine::vector2FromJson<float>(d["position"][0]);
 		drop.position[1] = engine::vector2FromJson<float>(d["position"][1]);
 		drop.chance = d.get("chance", 0.1).asFloat();
+		drop.max = static_cast<uint16_t>(d.get("max", 100).asUInt());
 		m_drops.push_back(drop);
 	}
 	return true;
@@ -60,7 +61,7 @@ void Fish::OnUpdate(sf::Time interval) {
 void Fish::TryDrop() {
 	engine::RandomFloat<float> r(0, 1);
 	for (Drop& drop: m_drops) {
-		if (r() < drop.chance) {
+		if (drop.activeDrops.size() < drop.max && r() < drop.chance) {
 			auto node = engine::Factory::CreateChildFromFile(drop.script, m_parent);
 			auto pos = GetGlobalPosition();
 			node->SetPosition(pos + engine::RandomVector(drop.position[0], drop.position[1]));

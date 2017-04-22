@@ -15,11 +15,13 @@ public:
 		float chance;
 		sf::Vector2f position[2];
 		std::unordered_set<engine::Node*> activeDrops;
+		uint16_t max;
 	};
 protected:
-	std::vector<Fish::Drop> m_drops;
+	std::vector<Drop> m_drops;
 	engine::EventHandler<void, engine::Node*>* m_dropDeleteHandler;
 	float m_dropTimer;
+	std::unique_ptr<engine::BaseEventHandler> m_clickHandler;
 public:
 	Fish(engine::Scene* scene);
 	virtual ~Fish();
@@ -31,6 +33,7 @@ public:
 	virtual bool initialize(Json::Value& root);
 
 	void TryDrop();
+
 };
 
 
