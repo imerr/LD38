@@ -3,13 +3,13 @@
 //
 
 #include <Engine/Text.hpp>
+#include <Engine/Game.hpp>
 #include <Engine/util/json.hpp>
 #include <Engine/SpriteNode.hpp>
 #include "Level.hpp"
 
 Level::Level(engine::Game* game) : Scene(game), m_money(0), m_pollution(0), m_aquariumBack(nullptr),
 								   m_aquariumFront(nullptr), m_warningTween(nullptr), m_lastPollution(0) {
-
 }
 
 Level::~Level() {

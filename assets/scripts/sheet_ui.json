@@ -2,7 +2,11 @@
   "texture": "assets/images/ui.png",
   "sprites": [
     // Trend
-    [0, 0, 5, 4], // 0 down
-    [5, 0, 5, 4] // 1 up
+    [0, 0, 5, 4], // 0: down
+    [5, 0, 5, 4], // 1: up
+    // speed buttons
+    [0, 5, 22, 12], // 2: 1x
+    [0, 17, 22, 12], // 3: 4x
+    [0, 29, 22, 12] //  4: 8x
   ]
 }

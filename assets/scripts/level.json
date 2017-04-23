@@ -68,6 +68,27 @@
         "text": "0%",
         "align": "right"
       }
+    },
+    // speed button
+    {
+      "type": "speed_button",
+      "size": [66, 36],
+      "position": [10, 10],
+      "sprite": {
+        "sheet": "assets/scripts/sheet_ui.json",
+        "animations": {
+          "default": {
+            "frames": [2]
+          },
+          "4x": {
+            "frames": [3]
+          },
+          "8x": {
+            "frames": [4]
+          }
+        }
+      },
+      "speeds": [1, 4, 8]
     }
   ],
   "children": [
