@@ -10,32 +10,33 @@
 #include "FishEgg.hpp"
 
 BreedFish::BreedFish(engine::Scene* scene) : Fish(scene), m_fed(0), m_breedWith(nullptr) {
-	m_collideHandler.reset(m_scene->OnContactPreSolve.MakeHandler([this](b2Contact* contact, const b2Manifold* manifold) {
-		if (!contact->IsEnabled()) {
-			return;
-		}
-		auto a = static_cast<engine::Node*>(contact->GetFixtureA()->GetBody()->GetUserData());
-		auto b = static_cast<engine::Node*>(contact->GetFixtureB()->GetBody()->GetUserData());
-		BreedFish* other = nullptr;
-		if (a == this && b) {
-			if (b->GetType() == NT_BREEDFISH) {
-				other = static_cast<BreedFish*>(b);
-			} else if (b->GetIdentifier() == "fishfood" && CanEat()) {
-				b->Delete();
-				Eat();
-			}
-		} else if (b == this && a) {
-			if (a->GetType() == NT_BREEDFISH) {
-				other = static_cast<BreedFish*>(a);
-			}
-		}
-		if (other) {
-			contact->SetEnabled(false);
-			if (CanBreed() && other->CanBreed()) {
-				m_breedWith = other;
-			}
-		}
-	}));
+	m_collideHandler.reset(
+			m_scene->OnContactPreSolve.MakeHandler([this](b2Contact* contact, const b2Manifold* manifold) {
+				if (!contact->IsEnabled()) {
+					return;
+				}
+				auto a = static_cast<engine::Node*>(contact->GetFixtureA()->GetBody()->GetUserData());
+				auto b = static_cast<engine::Node*>(contact->GetFixtureB()->GetBody()->GetUserData());
+				BreedFish* other = nullptr;
+				if (a == this && b) {
+					if (b->GetType() == NT_BREEDFISH) {
+						other = static_cast<BreedFish*>(b);
+					} else if (b->GetIdentifier() == "fishfood" && CanEat()) {
+						b->Delete();
+						Eat();
+					}
+				} else if (b == this && a) {
+					if (a->GetType() == NT_BREEDFISH) {
+						other = static_cast<BreedFish*>(a);
+					}
+				}
+				if (other) {
+					contact->SetEnabled(false);
+					if (CanBreed() && other->CanBreed()) {
+						m_breedWith = other;
+					}
+				}
+			}));
 }
 
 uint8_t BreedFish::GetType() const {
@@ -62,20 +63,21 @@ void BreedFish::Breed(BreedFish* other) {
 	auto m = GetIdentifier();
 	auto o = other->GetIdentifier();
 	std::string result;
-	if (m == "goldfish_red" && o == "goldfish_green") {
+	if (m == "goldfish_red" && o == "goldfish_green" || o == "goldfish_red" && m == "goldfish_green") {
 		result = "goldfish_yellow";
-	} else if (m == "goldfish_blue" && o == "goldfish_green") {
+	} else if (m == "goldfish_blue" && o == "goldfish_green" || o == "goldfish_blue" && m == "goldfish_green") {
 		result = "goldfish_turquoise";
-	} else if (m == "goldfish_red" && o == "goldfish_blue") {
+	} else if (m == "goldfish_red" && o == "goldfish_blue" || o == "goldfish_red" && m == "goldfish_blue") {
 		result = "goldfish_purple";
-	} else if (m == "goldfish_yellow" && o == "goldfish_purple") {
+	} else if (m == "goldfish_yellow" && o == "goldfish_purple" || o == "goldfish_yellow" && m == "goldfish_purple") {
 		result = "goldfish_red";
-	} else if (m == "goldfish_turquoise" && o == "goldfish_pink") {
+	} else if (m == "goldfish_turquoise" && o == "goldfish_pink" || o == "goldfish_turquoise" && m == "goldfish_pink") {
 		result = "goldfish_blue";
-	} else if (m == "goldfish_turquoise" && o == "goldfish_yellow") {
+	} else if (m == "goldfish_turquoise" && o == "goldfish_yellow" ||
+			   o == "goldfish_turquoise" && m == "goldfish_yellow") {
 		result = "goldfish_green";
 	} else {
-		engine::RandomInt<int> r(0,1);
+		engine::RandomInt<int> r(0, 1);
 		if (r() == 1) {
 			result = o;
 		} else {
