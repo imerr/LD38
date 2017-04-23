@@ -80,6 +80,7 @@ bool Fish::initialize(Json::Value& root) {
 void Fish::OnUpdate(sf::Time interval) {
 	Buoyant::OnUpdate(interval);
 	if (m_dead) {
+		static_cast<Level*>(m_scene)->AddPollution(5 * interval.asSeconds());
 		return;
 	}
 	m_dropTimer += interval.asSeconds();
