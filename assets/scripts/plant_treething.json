@@ -1,0 +1,22 @@
+{
+  "type": "plant",
+  "size": [84, 105],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_plant.json",
+    "index": 1
+  },
+  "body": {
+    "fixedRotation": true,
+    "shapes": [
+      {
+        "type": "circle",
+        "radius": 12,
+        "y": 45,
+        "mask": 5
+      }
+    ]
+  },
+  "buoyancy": 0.8,
+  "cleaning": 10
+}

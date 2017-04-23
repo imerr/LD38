@@ -39,10 +39,10 @@
   "drops": [
     {
       "script": "assets/scripts/drop_poop.json",
-      "chance": 0.4,
+      "chance": 0.04,
       "position": [
-        [-13, 8],
-        [8, 16]
+        [-21, 4],
+        [-21, 4]
       ],
       "max": 5
     }

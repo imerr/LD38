@@ -1,0 +1,11 @@
+{
+  "texture": "assets/images/plants.png",
+  "sprites": [
+    [0, 0, 18, 12],// moss 0
+    [18, 0, 28, 35], // tree.. thing 1
+    // cleaning tablet 2-4 (yes i realize it is not a plant. thank you very much for your concern)
+    [0, 12, 12, 8],
+    [0, 20, 12, 8],
+    [0, 28, 12, 8]
+  ]
+}

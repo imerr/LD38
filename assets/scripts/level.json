@@ -69,6 +69,27 @@
       "identifier": "aquariumContainer",
       "children": [
         {
+          "identifier": "plants",
+          "children": [
+            {
+              "position": [200, 0],
+              "childData": "assets/scripts/plant_moss.json"
+            },
+            {
+              "position": [400, 0],
+              "childData": "assets/scripts/plant_treething.json"
+            },
+            {
+              "position": [300, 0],
+              "childData": "assets/scripts/plant_tablet.json"
+            },
+            {
+              "position": [350, 0],
+              "childData": "assets/scripts/plant_tablet.json"
+            }
+          ]
+        },
+        {
           "position": [140, 0],
           "childData": "assets/scripts/fish_clam.json"
         },
@@ -96,6 +117,7 @@
           {
             "type": "chain",
             "friction": 0.6,
+            "category": 2,
             "points": [
               [15, 0],
               [15, 350],

@@ -1,0 +1,27 @@
+{
+  "type": "plant",
+  "size": [24, 16],
+  "origin": "center",
+  "despawn": 20,
+  "sprite": {
+    "sheet": "assets/scripts/sheet_plant.json",
+    "animations": {
+      "default": {
+        "frames": [2, 2, 3, 4],
+        "speed": 4
+      }
+    }
+  },
+  "body": {
+    "fixedRotation": true,
+    "shapes": [
+      {
+        "type": "circle",
+        "radius": 8,
+        "mask": 5
+      }
+    ]
+  },
+  "buoyancy": 0.8,
+  "cleaning": 50
+}
