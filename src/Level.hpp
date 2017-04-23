@@ -9,6 +9,7 @@ protected:
 	int64_t m_money;
 	sf::Rect<float> m_waterRect;
 	float m_pollution;
+	float m_lastPollution;
 	engine::SpriteNode* m_aquariumBack;
 	engine::SpriteNode* m_aquariumFront;
 	engine::Tween<sf::Color>* m_warningTween;
@@ -16,6 +17,10 @@ public:
 	Level(engine::Game* game);
 	virtual ~Level();
 
+protected:
+	virtual void PostUpdate(sf::Time interval);
+
+public:
 	void AddMoney(int32_t amount);
 
 	virtual bool initialize(Json::Value& root);

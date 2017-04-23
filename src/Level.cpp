@@ -8,7 +8,7 @@
 #include "Level.hpp"
 
 Level::Level(engine::Game* game) : Scene(game), m_money(0), m_pollution(0), m_aquariumBack(nullptr),
-								   m_aquariumFront(nullptr), m_warningTween(nullptr) {
+								   m_aquariumFront(nullptr), m_warningTween(nullptr), m_lastPollution(0) {
 
 }
 
@@ -41,9 +41,6 @@ bool Level::InWater(sf::Vector2f point) {
 
 void Level::AddPollution(float pollution) {
 	m_pollution += pollution;
-	if (m_pollution < 0) {
-		m_pollution = 0;
-	}
 	float pollutionPct = GetPollutionPct();
 	sf::Color color = engine::blendValueWithEasing(sf::Color::White, sf::Color(118, 40, 0), pollutionPct, 1,
 												   engine::EasingLinear);
@@ -82,4 +79,25 @@ void Level::AddPollution(float pollution) {
 void Level::OnInitializeDone() {
 	m_aquariumBack = static_cast<engine::SpriteNode*>(GetChildByID("aquariumBack"));
 	m_aquariumFront = static_cast<engine::SpriteNode*>(GetChildByID("aquariumFront"));
+}
+
+void Level::PostUpdate(sf::Time interval) {
+	auto up = m_ui->GetChildByID("pollution_up");
+	auto down = m_ui->GetChildByID("pollution_down");
+	if (up && down) {
+		if (engine::floatEqual(m_pollution, m_lastPollution, 0.0001f)) {
+			up->SetActive(false);
+			down->SetActive(false);
+		} else if (m_pollution > m_lastPollution) {
+			up->SetActive(true);
+			down->SetActive(false);
+		} else {
+			up->SetActive(false);
+			down->SetActive(true);
+		}
+	}
+	if (m_pollution < 0) {
+		m_pollution = 0;
+	}
+	m_lastPollution = m_pollution;
 }

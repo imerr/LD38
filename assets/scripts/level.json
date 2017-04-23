@@ -35,11 +35,33 @@
         "index": 18
       }
     },
+    // pollution trend
+    {
+      "type": "sprite",
+      "size": [10, 10],
+      "identifier": "pollution_up",
+      "position": [975, 60],
+      "sprite": {
+        "sheet": "assets/scripts/sheet_ui.json",
+        "index": 0
+      }
+    },
+    // pollution trend
+    {
+      "type": "sprite",
+      "identifier": "pollution_down",
+      "size": [10, 10],
+      "position": [975, 70],
+      "sprite": {
+        "sheet": "assets/scripts/sheet_ui.json",
+        "index": 1
+      }
+    },
     // pollution text
     {
       "type": "text",
       "identifier": "pollution",
-      "position": [971, 60],
+      "position": [970, 60],
       "text": {
         "font": "assets/lcd_solid.ttf",
         "size": 20,
@@ -74,18 +96,6 @@
             {
               "position": [200, 0],
               "childData": "assets/scripts/plant_moss.json"
-            },
-            {
-              "position": [400, 0],
-              "childData": "assets/scripts/plant_treething.json"
-            },
-            {
-              "position": [300, 0],
-              "childData": "assets/scripts/plant_tablet.json"
-            },
-            {
-              "position": [350, 0],
-              "childData": "assets/scripts/plant_tablet.json"
             }
           ]
         },

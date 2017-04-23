@@ -1,0 +1,8 @@
+{
+  "texture": "assets/images/ui.png",
+  "sprites": [
+    // Trend
+    [0, 0, 5, 4], // 0 down
+    [5, 0, 5, 4] // 1 up
+  ]
+}
