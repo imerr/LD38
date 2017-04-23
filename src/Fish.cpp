@@ -101,7 +101,8 @@ void Fish::OnUpdate(sf::Time interval) {
 		auto level = static_cast<Level*>(m_scene);
 		// still the drop timer \o/
 		if (level->GetPollutionPct() > m_pollutionTolerance) {
-			ChangeHealth(-3);
+			engine::RandomFloat<float> r(-4, -1);
+			ChangeHealth(r());
 		} else {
 			ChangeHealth(1);
 		}
