@@ -5,7 +5,7 @@
 #include "Buoyant.hpp"
 #include "Level.hpp"
 
-Buoyant::Buoyant(engine::Scene* scene) : SpriteNode(scene), m_buoyancy(0), m_inWater(true) {
+Buoyant::Buoyant(engine::Scene* scene) : SpriteNode(scene), m_buoyancy(0), m_inWater(true), m_outOfWater(0) {
 
 }
 
@@ -14,6 +14,14 @@ void Buoyant::OnUpdate(sf::Time interval) {
 	bool inWater = level->InWater(m_scene->MeterToPixel(m_body->GetWorldCenter()));
 	if (m_body && inWater) {
 		m_body->ApplyForceToCenter(-m_buoyancy * m_body->GetMass() * m_scene->GetWorld()->GetGravity(), true);
+	}
+	if (!inWater) {
+		m_outOfWater += interval.asSeconds();
+		if (m_outOfWater > 20) {
+			Delete();
+		}
+	} else {
+		m_outOfWater = 0;
 	}
 	if (inWater != m_inWater) {
 		if (!m_inWater) {

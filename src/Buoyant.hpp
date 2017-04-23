@@ -12,6 +12,7 @@ class Buoyant: public engine::SpriteNode {
 protected:
 	float m_buoyancy;
 	bool m_inWater;
+	float m_outOfWater;
 public:
 	Buoyant(engine::Scene* scene);
 
