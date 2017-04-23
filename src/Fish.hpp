@@ -21,6 +21,12 @@ protected:
 	engine::EventHandler<void, engine::Node*>* m_dropDeleteHandler;
 	float m_dropTimer;
 	std::unique_ptr<engine::BaseEventHandler> m_clickHandler;
+	sf::Vector2f m_swimPower;
+	float m_swimChance;
+	bool m_shouldFlip;
+	float m_pollutionTolerance;
+	float m_health;
+	bool m_dead;
 public:
 	Fish(engine::Scene* scene);
 	virtual ~Fish();
@@ -34,6 +40,7 @@ public:
 
 	void TryDrop();
 
+	void ChangeHealth(float amount);
 };
 
 
