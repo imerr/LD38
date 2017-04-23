@@ -5,7 +5,7 @@
 #ifndef LD38_BUOYANT_HPP
 #define LD38_BUOYANT_HPP
 
-
+#include <SFML/Audio.hpp>
 #include <Engine/SpriteNode.hpp>
 
 class Buoyant: public engine::SpriteNode {
@@ -21,6 +21,7 @@ public:
 protected:
 	virtual void OnUpdate(sf::Time interval);
 
+	std::unique_ptr<sf::Sound> m_splashSound;
 };
 
 

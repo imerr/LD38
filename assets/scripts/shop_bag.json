@@ -1,0 +1,9 @@
+{
+  "type": "sprite",
+  "size": [100, 110],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_shop.json",
+    "index": 5
+  }
+}

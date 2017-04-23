@@ -1,0 +1,11 @@
+{
+  "texture": "assets/images/shop.png",
+  "sprites": [
+    [0, 0, 22, 40], // 0: fish food
+    [24, 0, 30, 15], // 1: info background
+    [24, 17, 32, 10], // 2: sell background
+    [24, 28, 32, 10], // 3: sell logo
+    [24, 40, 42, 10], // 4: bonus logo
+    [0, 42, 20, 22] // 5: bag filled with water
+  ]
+}

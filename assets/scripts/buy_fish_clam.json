@@ -1,0 +1,19 @@
+{
+  "type": "buy",
+  "size": [45, 51],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "index": 0
+  },
+  "price": 360,
+  "name": "Pearly Clam",
+  "description": [
+    "It's a clam!",
+    "Not only does it look pretty,",
+    "it also makes valuable pearls.",
+    "",
+    "Doesn't like pollution"
+  ],
+  "item_script": "assets/scripts/fish_clam.json"
+}

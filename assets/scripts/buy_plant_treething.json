@@ -1,0 +1,21 @@
+{
+  "type": "buy",
+  "size": [56, 70],
+  "rotation": 60,
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_plant.json",
+    "index": 1
+  },
+  "price": 550,
+  "name": "Underwater Tree",
+  "description": [
+    "um.. so this.. I.. uh..",
+    "Let's just call it a tree..",
+    "It cleans the water",
+    "",
+    "(Negates 10 poop)"
+  ],
+  "item_script": "assets/scripts/plant_treething.json",
+  "is_plant": true
+}

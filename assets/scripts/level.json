@@ -21,7 +21,7 @@
       "text": {
         "font": "assets/lcd_solid.ttf",
         "size": 20,
-        "text": 0,
+        "text": "200",
         "align": "right"
       }
     },
@@ -89,6 +89,152 @@
         }
       },
       "speeds": [1, 4, 8]
+    },
+    {
+      "type": "sprite",
+      "identifier": "item_info",
+      "position": [700, 95],
+      "active": false,
+      "size": [300, 150],
+      "sprite": {
+        "sheet": "assets/scripts/sheet_shop.json",
+        "index": 1
+      },
+      "children": [
+        {
+          "type": "sprite",
+          "size": [24, 24],
+          "position": [10, 10],
+          "sprite": {
+            "texture": "assets/images/coin.png"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "title",
+          "position": [40, 12],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 20,
+            "text": "50  Item Name"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "line_1",
+          "position": [15, 40],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 15,
+            "text": "Bla bla blablabla bla. Bla!"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "line_2",
+          "position": [15, 60],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 15,
+            "text": "Bla bla blablabla bla. Bla!"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "line_3",
+          "position": [15, 80],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 15,
+            "text": "Bla bla blablabla bla. Bla!"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "line_4",
+          "position": [15, 100],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 15,
+            "text": "Bla bla blablabla bla. Bla!"
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "line_5",
+          "position": [15, 120],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 15,
+            "text": "Bla bla blablabla bla. Bla!"
+          }
+        }
+      ]
+    },
+    // Sell window
+    {
+      "type": "sprite",
+      "identifier": "sell",
+      "size": [320, 100],
+      "position": [130, 470],
+      "sprite": {
+        "sheet": "assets/scripts/sheet_shop.json",
+        "index": 2
+      },
+      "children": [
+        {
+          "identifier": "normal",
+          "position": [80, 50],
+          "children": [
+            {"childData": "assets/scripts/sell_fish_red.json"},
+            {"childData": "assets/scripts/sell_fish_green.json"},
+            {"childData": "assets/scripts/sell_fish_blue.json"}
+          ]
+        },
+        {
+          "identifier": "special",
+          "position": [240, 50],
+          "children": [
+            {"price": 50, "childData": "assets/scripts/sell_fish_red.json"},
+            {"price": 50, "childData": "assets/scripts/sell_fish_green.json"},
+            {"price": 50, "childData": "assets/scripts/sell_fish_blue.json"},
+            {"childData": "assets/scripts/sell_fish_yellow.json"},
+            {"childData": "assets/scripts/sell_fish_turquoise.json"},
+            {"childData": "assets/scripts/sell_fish_purple.json"}
+          ]
+        },
+        {
+          "type": "sprite",
+          "position": [165, 0],
+          "size": [96, 30],
+          "origin": "center",
+          "sprite": {
+            "sheet": "assets/scripts/sheet_shop.json",
+            "index": 3
+          }
+        },
+        {
+          "type": "sprite",
+          "position": [245, 85],
+          "size": [84, 20],
+          "origin": "center",
+          "sprite": {
+            "sheet": "assets/scripts/sheet_shop.json",
+            "index": 4
+          }
+        },
+        {
+          "type": "text",
+          "identifier": "time",
+          "position": [160, 75],
+          "text": {
+            "font": "assets/lcd_solid.ttf",
+            "size": 20,
+            "text": "30",
+            "align": "center"
+          }
+        }
+      ]
     }
   ],
   "children": [
@@ -119,34 +265,6 @@
               "childData": "assets/scripts/plant_moss.json"
             }
           ]
-        },
-        {
-          "position": [140, 0],
-          "childData": "assets/scripts/fish_clam.json"
-        },
-        {
-          "position": [340, 0],
-          "childData": "assets/scripts/fish_goldfish_red.json"
-        },
-        {
-          "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish_green.json"
-        },
-        {
-          "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish_blue.json"
-        },
-        {
-          "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish_turquoise.json"
-        },
-        {
-          "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish_yellow.json"
-        },
-        {
-          "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish_purple.json"
         }
       ]
     },
@@ -183,6 +301,71 @@
           }
         ]
       }
+    },
+    {
+      "position": [10, 557],
+      "childData": "assets/scripts/shop_fishfood.json"
+    },
+    {
+      "position": [736, 536],
+      "type": "buy",
+      "price": 80,
+      "item_script": "assets/scripts/fish_goldfish_red.json",
+      "childData": "assets/scripts/sell_fish_red.json"
+    },
+    {
+      "position": [736, 516],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [856, 540],
+      "type": "buy",
+      "price": 80,
+      "item_script": "assets/scripts/fish_goldfish_green.json",
+      "childData": "assets/scripts/sell_fish_green.json"
+    },
+    {
+      "position": [856, 520],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [960, 538],
+      "type": "buy",
+      "price": 80,
+      "item_script": "assets/scripts/fish_goldfish_blue.json",
+      "childData": "assets/scripts/sell_fish_blue.json"
+    },
+    {
+      "position": [960, 528],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [763, 418],
+      "childData": "assets/scripts/buy_plant_moss.json"
+    },
+    {
+      "position": [763, 398],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [867, 417],
+      "childData": "assets/scripts/buy_plant_treething.json"
+    },
+    {
+      "position": [867, 407],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [972, 384],
+      "childData": "assets/scripts/buy_fish_clam.json"
+    },
+    {
+      "position": [972, 384],
+      "childData": "assets/scripts/shop_bag.json"
+    },
+    {
+      "position": [538, 548],
+      "childData": "assets/scripts/buy_plant_tablet.json"
     }
   ]
 }

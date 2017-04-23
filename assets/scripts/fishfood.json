@@ -1,0 +1,29 @@
+{
+  "type": "buoyant",
+  "identifier": "fishfood",
+  "size": [12, 12],
+  "origin": "center",
+  "despawn": 60,
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "randomIndex": [
+      [55, 1],
+      [56, 1],
+      [57, 1],
+      [58, 1],
+      [59, 1],
+      [60, 1],
+      [61, 1],
+      [62, 1],
+      [63, 1]
+    ]
+  },
+  "body": {
+    "gravityScale": 0.3,
+    "linearDamping": 0.7,
+    "shapes": [
+      {"type": "circle", "radius": 12}
+    ]
+  },
+  "buoyancy": 0.995
+}

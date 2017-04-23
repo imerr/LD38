@@ -2,9 +2,6 @@ A Small World
 ====
 
 ## TODO
-- Fish with different colors
-	- Primary: Red, Green, Blue
-	- Secondary: Yellow, Turquoise, Pink
 - Breeding:
 	- Red + Green -> Yellow
 	- Green + Blue -> Turquoise
@@ -13,18 +10,15 @@ A Small World
 	- Pink + Turquoise -> Blue
 	- Turquoise + Yellow -> Green
 	- Secondary Colors + Main = Random Result (50/50)
-- Sale: Primary Color + Random Color (bonus money)
 - Buy:
 	- Fish
-		- Always more expensive than selling - even random ones
+		- Always more expensive than selling
 		- Primary Colors
 		- Clam (bonus money for no effort, but more sensitive to pollution)
 	- Plants
 		- Moss (cheap, 2 poop)
 		- Treething (more expensive, 10 poop)
 		- Cleaning Tablet (expensive, disappears, cleans a shitload)
-- Buy lets you drop the thing at a selectable x-position (above fish tank)
-
 
 ##Ideas
 - Fish Tank "Management" Game **WINNER**

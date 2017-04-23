@@ -5,6 +5,7 @@
 #ifndef LD38_FISH_HPP
 #define LD38_FISH_HPP
 #include <unordered_set>
+#include <SFML/Audio.hpp>
 #include "Buoyant.hpp"
 
 class Fish: public Buoyant {
@@ -15,6 +16,7 @@ public:
 		sf::Vector2f position[2];
 		std::unordered_set<engine::Node*> activeDrops;
 		uint16_t max;
+		std::shared_ptr<sf::Sound> sound;
 	};
 protected:
 	std::vector<Drop> m_drops;
@@ -33,6 +35,8 @@ public:
 	virtual ~Fish();
 	virtual bool CanDrop();
 
+	virtual uint8_t GetType() const;
+
 protected:
 	virtual void OnUpdate(sf::Time interval);
 
@@ -43,6 +47,7 @@ public:
 
 	void ChangeHealth(float amount);
 
+	sf::Sound* m_swimSound;
 };
 
 

@@ -1,0 +1,22 @@
+{
+  "type": "buy",
+  "size": [44, 80],
+  "origin": "bottom-left",
+  "position": [10, 10],
+  "sprite": {
+    "sheet": "assets/scripts/sheet_shop.json",
+    "index": 0
+  },
+  "price": 5,
+  "name": "M8 Flakes",
+  "description": [
+    "High quality fish food",
+    "Stimulates breeding activity",
+    "when eaten",
+    "",
+    "Dissolves after a while"
+  ],
+  "item_script": "assets/scripts/fishfood.json",
+  "item_amount": 5,
+  "buy_sound": "assets/sounds/shake.ogg"
+}

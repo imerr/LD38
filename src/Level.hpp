@@ -3,6 +3,7 @@
 
 
 #include <Engine/Scene.hpp>
+#include "ShopItem.hpp"
 
 class Level: public engine::Scene {
 protected:
@@ -13,11 +14,15 @@ protected:
 	engine::SpriteNode* m_aquariumBack;
 	engine::SpriteNode* m_aquariumFront;
 	engine::Tween<sf::Color>* m_warningTween;
+	ShopItem* m_activeShopItem;
+	float m_saleTimer;
 public:
 	Level(engine::Game* game);
 	virtual ~Level();
 
 protected:
+	virtual void OnUpdate(sf::Time interval);
+
 	virtual void PostUpdate(sf::Time interval);
 
 public:
@@ -32,8 +37,17 @@ public:
 	virtual void OnInitializeDone();
 
 	float GetPollutionPct() {
-		return std::min(1.0f, m_pollution/1000);
+		return std::max(0.0f, std::min(1.0f, m_pollution/1000));
 	}
+
+	void SetActiveShopItem(ShopItem* item);
+	ShopItem* GetActiveShopItem();
+
+	int64_t GetMoney();
+
+	sf::Vector2f GetSpawnPosition();
+
+	void RefreshSale(bool special);
 };
 
 

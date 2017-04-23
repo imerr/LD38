@@ -1,0 +1,20 @@
+{
+  "type": "buy",
+  "size": [36, 24],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_plant.json",
+    "index": 0
+  },
+  "price": 300,
+  "name": "Mossy Rock",
+  "description": [
+    "It's a rock! With moss!",
+    "I know.. I know.. amazing",
+    "Slightly filters pollution",
+    "",
+    "(Negates 2 poop)"
+  ],
+  "item_script": "assets/scripts/plant_moss.json",
+  "is_plant": true
+}

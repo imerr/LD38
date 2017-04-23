@@ -10,7 +10,7 @@ include("engine/compiler.cmake")
 include_directories(.)
 
 set(SOURCE_FILES
-    src/main.cpp src/LD38.cpp src/LD38.hpp src/Level.cpp src/Level.hpp src/Fish.cpp src/Fish.hpp src/Fish/Clam.cpp src/Fish/Clam.hpp src/Drop.cpp src/Drop.hpp src/Buoyant.cpp src/Buoyant.hpp src/Plant.cpp src/Plant.hpp src/SpeedButton.cpp src/SpeedButton.hpp)
+    src/main.cpp src/LD38.cpp src/LD38.hpp src/Level.cpp src/Level.hpp src/Fish.cpp src/Fish.hpp src/Fish/Clam.cpp src/Fish/Clam.hpp src/Drop.cpp src/Drop.hpp src/Buoyant.cpp src/Buoyant.hpp src/Plant.cpp src/Plant.hpp src/SpeedButton.cpp src/SpeedButton.hpp src/ShopItem.cpp src/ShopItem.hpp src/ShopItemBuy.cpp src/ShopItemBuy.hpp src/ShopItemSell.cpp src/ShopItemSell.hpp src/misc.hpp.hpp src/BreedFish.cpp src/BreedFish.hpp src/FishEgg.cpp src/FishEgg.hpp)
 
 if (ANDROID)
 	add_library(LD38 SHARED ${SOURCE_FILES})

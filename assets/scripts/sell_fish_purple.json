@@ -1,0 +1,19 @@
+{
+  "type": "sell",
+  "size": [58, 32],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "index": 48
+  },
+  "price": 80,
+  "name": "Purple Fish",
+  "description": [
+    "A rare breed of fish identified",
+    "by it's stunning color",
+    "It's worth quite a bit",
+    "",
+    "(Bred with blue + red)"
+  ],
+  "look_for": "goldfish_purple"
+}

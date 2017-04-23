@@ -6,8 +6,10 @@
 #include <Engine/Factory.hpp>
 #include <Engine/Game.hpp>
 #include <Engine/util/json.hpp>
+#include <Engine/ResourceManager.hpp>
 #include "Fish.hpp"
 #include "Level.hpp"
+#include "misc.hpp.hpp"
 
 Fish::Fish(engine::Scene* scene) : Buoyant(scene), m_dropTimer(0), m_swimChance(-1), m_shouldFlip(false),
 								   m_pollutionTolerance(0.5), m_health(10), m_dead(false), m_deadFloat(true) {
@@ -35,6 +37,7 @@ Fish::Fish(engine::Scene* scene) : Buoyant(scene), m_dropTimer(0), m_swimChance(
 						true);
 				return true;
 			}, this));
+	m_swimSound = engine::ResourceManager::instance()->MakeSound("assets/sounds/swim.ogg");
 }
 
 Fish::~Fish() {
@@ -44,6 +47,7 @@ Fish::~Fish() {
 		}
 	}
 	m_scene->GetGame()->OnMouseClick.RemoveHandler(m_clickHandler.get());
+	delete m_swimSound;
 }
 
 bool Fish::initialize(Json::Value& root) {
@@ -65,6 +69,9 @@ bool Fish::initialize(Json::Value& root) {
 		drop.position[1] = engine::vector2FromJson<float>(d["position"][1]);
 		drop.chance = d.get("chance", 0.1).asFloat();
 		drop.max = static_cast<uint16_t>(d.get("max", 100).asUInt());
+		if (d["sound"].isString()) {
+			drop.sound.reset(engine::ResourceManager::instance()->MakeSound(d["sound"].asString()));
+		}
 		m_drops.push_back(drop);
 	}
 	m_buoyancy = root.get("buoyancy", 0.0).asFloat();
@@ -92,6 +99,9 @@ void Fish::OnUpdate(sf::Time interval) {
 			engine::RandomFloat<float> r(0, 1);
 			if (r() < m_swimChance) {
 				float angle = r() * engine::fPI * 2;
+				if (m_swimSound && r() < 0.2) {
+					m_swimSound->play();
+				}
 				m_body->ApplyLinearImpulseToCenter(b2Vec2(m_swimPower.x * cos(angle), m_swimPower.y * sin(angle)),
 												   true);
 				if (m_animations.find("swim") != m_animations.end()) {
@@ -132,6 +142,9 @@ void Fish::TryDrop() {
 			node->SetPosition(pos + randomPos);
 			drop.activeDrops.insert(node);
 			node->OnDelete.AddHandler(m_dropDeleteHandler);
+			if (drop.sound.get()) {
+				drop.sound->play();
+			}
 		}
 	}
 }
@@ -157,11 +170,15 @@ void Fish::ChangeHealth(float amount) {
 	if (m_health < 0) {
 		m_dead = true;
 		if (m_deadFloat) {
-			m_buoyancy = 1.05;
+			m_buoyancy = 1.05f;
 			SetVFlipped(true);
 		}
 		if (m_animations.find("dead") != m_animations.end()) {
 			PlayAnimation("dead");
 		}
 	}
+}
+
+uint8_t Fish::GetType() const {
+	return NT_FISH;
 }

@@ -1,0 +1,19 @@
+{
+  "type": "buy",
+  "size": [48, 32],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_plant.json",
+    "index": 2
+  },
+  "price": 30,
+  "name": "Water Cleaner",
+  "description": [
+    "Totally biological* solution to",
+    "polluted water! Cleans even the",
+    "worst gunk in seconds. (*not)",
+    "May give your fish cancer"
+  ],
+  "item_script": "assets/scripts/plant_tablet.json",
+  "is_plant": true
+}

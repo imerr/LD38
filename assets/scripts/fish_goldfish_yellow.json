@@ -1,7 +1,8 @@
 {
-  "type": "fish",
+  "type": "breedfish",
   "size": [57, 32],
   "origin": "center",
+  "identifier": "goldfish_yellow",
   "sprite": {
     "sheet": "assets/scripts/sheet_fish.json",
     "animations": {
@@ -30,9 +31,7 @@
         "y": 0,
         "width": 40,
         "height": 20,
-        "density": 10,
-        "category": 4,
-        "mask": 4
+        "density": 10
       }
     ]
   },
@@ -44,7 +43,8 @@
         [-21, 4],
         [-21, 4]
       ],
-      "max": 5
+      "max": 5,
+      "sound": "assets/sounds/poop.ogg"
     }
   ],
   "buoyancy": 1,

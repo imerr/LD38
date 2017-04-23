@@ -1,0 +1,18 @@
+{
+  "type": "sell",
+  "size": [58, 32],
+  "origin": "center",
+  "sprite": {
+    "sheet": "assets/scripts/sheet_fish.json",
+    "index": 27
+  },
+  "price": 40,
+  "name": "Blue Fish",
+  "description": [
+    "It's a fish..",
+    "..and it's sorta blue.",
+    "One of the basic colors,",
+    "so it's not too valuable"
+  ],
+  "look_for": "goldfish_blue"
+}

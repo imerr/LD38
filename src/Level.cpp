@@ -6,10 +6,12 @@
 #include <Engine/Game.hpp>
 #include <Engine/util/json.hpp>
 #include <Engine/SpriteNode.hpp>
+#include <Engine/util/Random.hpp>
 #include "Level.hpp"
 
-Level::Level(engine::Game* game) : Scene(game), m_money(0), m_pollution(0), m_aquariumBack(nullptr),
-								   m_aquariumFront(nullptr), m_warningTween(nullptr), m_lastPollution(0) {
+Level::Level(engine::Game* game) : Scene(game), m_money(2000), m_pollution(0), m_aquariumBack(nullptr),
+								   m_aquariumFront(nullptr), m_warningTween(nullptr), m_lastPollution(0),
+								   m_activeShopItem(nullptr), m_saleTimer(0) {
 }
 
 Level::~Level() {
@@ -58,12 +60,12 @@ void Level::AddPollution(float pollution) {
 	if (pollutionPct > 0.5) {
 		if (!m_warningTween) {
 			m_warningTween = MakeTween<sf::Color>(true, sf::Color::White, sf::Color(255, 105, 45), 1,
-									   [this](const sf::Color& value) {
-										   auto pollutionDisplay = m_ui->GetChildByID("pollution");
-										   if (pollutionDisplay) {
-											   static_cast<engine::Text*>(pollutionDisplay)->SetColor(value);
-										   }
-									   }, engine::EasingLinear, true, true);
+												  [this](const sf::Color& value) {
+													  auto pollutionDisplay = m_ui->GetChildByID("pollution");
+													  if (pollutionDisplay) {
+														  static_cast<engine::Text*>(pollutionDisplay)->SetColor(value);
+													  }
+												  }, engine::EasingLinear, true, true);
 		}
 	} else {
 		if (m_warningTween) {
@@ -103,4 +105,77 @@ void Level::PostUpdate(sf::Time interval) {
 		m_pollution = 1000;
 	}
 	m_lastPollution = m_pollution;
+}
+
+void Level::SetActiveShopItem(ShopItem* item) {
+	m_activeShopItem = item;
+	auto info = m_ui->GetChildByID("item_info");
+	if (!info) {
+		return;
+	}
+	if (!item) {
+		info->SetActive(false);
+		return;
+	}
+	info->SetActive(true);
+	auto title = static_cast<engine::Text*>(info->GetChildByID("title"));
+	if (title) {
+		title->SetText(std::to_string(item->GetPrice()) + "  " + item->GetName());
+	}
+	const auto& desc = m_activeShopItem->GetDescription();
+	for (size_t i = 0; i < 5 ; i++) {
+		auto line = static_cast<engine::Text*>(info->GetChildByID("line_" + std::to_string(i + 1)));
+		if (!line) {
+			break;
+		}
+		if (i >= desc.size()) {
+			line->SetText("");
+		} else {
+			line->SetText(desc[i]);
+		}
+	}
+}
+
+ShopItem* Level::GetActiveShopItem() {
+	return m_activeShopItem;
+}
+
+int64_t Level::GetMoney() {
+	return m_money;
+}
+
+sf::Vector2f Level::GetSpawnPosition() {
+	engine::RandomFloat<float> x(m_waterRect.left + 80,  m_waterRect.left + m_waterRect.width - 80);
+	return sf::Vector2f(x(), -50);
+}
+
+void Level::OnUpdate(sf::Time interval) {
+	m_saleTimer -= interval.asSeconds();
+	if (m_saleTimer < 0) {
+		m_saleTimer = 30;
+		RefreshSale(true);
+		RefreshSale(false);
+	}
+	auto sell = m_ui->GetChildByID("sell");
+	if (sell) {
+		auto time = static_cast<engine::Text*>(sell->GetChildByID("time"));
+		if (time) {
+			time->SetText(std::to_string(static_cast<int>(m_saleTimer)));
+		}
+	}
+	engine::Scene::OnUpdate(interval);
+}
+
+void Level::RefreshSale(bool special) {
+	auto sell = m_ui->GetChildByID("sell");
+	if (sell) {
+		auto n = sell->GetChildByID(special ? "special" : "normal");
+		if (n && n->GetChildren().size() > 0) {
+			for (auto& child : n->GetChildren()) {
+				child->SetActive(false);
+			}
+			engine::RandomInt<size_t> r(0, n->GetChildren().size() - 1);
+			n->GetChildren()[r()]->SetActive(true);
+		}
+	}
 }

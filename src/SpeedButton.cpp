@@ -73,3 +73,7 @@ void SpeedButton::DecreaseSpeed() {
 	m_currentSpeed--;
 	UpdateSpeed();
 }
+
+SpeedButton::~SpeedButton() {
+	m_scene->GetGame()->OnMouseClick.RemoveHandler(m_clickHandler.get());
+}

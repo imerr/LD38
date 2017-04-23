@@ -32,5 +32,5 @@ void Clam::OnUpdate(sf::Time interval) {
 bool Clam::CanDrop() {
 	auto vel = m_body->GetLinearVelocity();
 	auto rot = engine::NormalizeAngleDeg(GetRotation());
-	return engine::floatEqual(vel.x, 0, 0.001) && engine::floatEqual(vel.y, 0, 0.001) && (rot < 60 || rot > 300);
+	return engine::floatEqual(vel.x, 0, 0.001f) && engine::floatEqual(vel.y, 0, 0.001f) && (rot < 60 || rot > 300);
 }

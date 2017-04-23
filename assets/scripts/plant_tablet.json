@@ -7,7 +7,7 @@
     "sheet": "assets/scripts/sheet_plant.json",
     "animations": {
       "default": {
-        "frames": [2, 2, 3, 4],
+        "frames": [2, 2, 3, 4, 4],
         "speed": 4
       }
     }

@@ -15,6 +15,7 @@ protected:
 	size_t m_currentSpeed;
 public:
 	SpeedButton(engine::Scene* scene);
+	virtual ~SpeedButton();
 	virtual bool initialize(Json::Value& root);
 	void IncreaseSpeed();
 
