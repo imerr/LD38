@@ -6,7 +6,8 @@
 #include <Engine/Game.hpp>
 #include <sstream>
 
-SpeedButton::SpeedButton(engine::Scene* scene) : SpriteNode(scene), m_currentSpeed(0), m_speeds{1} {
+SpeedButton::SpeedButton(engine::Scene* scene) : SpriteNode(scene), m_currentSpeed(0) {
+	m_speeds.push_back(1);
 	m_clickHandler.reset(m_scene->GetGame()->OnMouseClick.MakeHandler(
 			[this](const sf::Mouse::Button& button, const sf::Vector2f& pos, bool down) {
 				return !down && IsIn(pos.x, pos.y);
