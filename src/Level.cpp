@@ -9,7 +9,7 @@
 #include <Engine/util/Random.hpp>
 #include "Level.hpp"
 
-Level::Level(engine::Game* game) : Scene(game), m_money(2000), m_pollution(0), m_aquariumBack(nullptr),
+Level::Level(engine::Game* game) : Scene(game), m_money(200), m_pollution(0), m_aquariumBack(nullptr),
 								   m_aquariumFront(nullptr), m_warningTween(nullptr), m_lastPollution(0),
 								   m_activeShopItem(nullptr), m_saleTimer(0) {
 }
