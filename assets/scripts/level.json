@@ -200,6 +200,12 @@
             {"price": 50, "childData": "assets/scripts/sell_fish_blue.json"},
             {"childData": "assets/scripts/sell_fish_yellow.json"},
             {"childData": "assets/scripts/sell_fish_turquoise.json"},
+            {"childData": "assets/scripts/sell_fish_purple.json"},
+            {"childData": "assets/scripts/sell_fish_yellow.json"},
+            {"childData": "assets/scripts/sell_fish_turquoise.json"},
+            {"childData": "assets/scripts/sell_fish_purple.json"},
+            {"childData": "assets/scripts/sell_fish_yellow.json"},
+            {"childData": "assets/scripts/sell_fish_turquoise.json"},
             {"childData": "assets/scripts/sell_fish_purple.json"}
           ]
         },
