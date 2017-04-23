@@ -13,6 +13,9 @@
       "default": {
         "frames": [11, 14, 15, 16, 17],
         "speed": 0.2
+      },
+      "dead": {
+        "frames": [11]
       }
     }
   },
@@ -36,7 +39,7 @@
   "drops": [
     {
       "script": "assets/scripts/drop_poop.json",
-      "chance": 0.05,
+      "chance": 0.4,
       "position": [
         [-13, 8],
         [8, 16]

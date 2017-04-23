@@ -11,6 +11,9 @@
       },
       "open": {
         "frames": [1]
+      },
+      "dead": {
+        "frames": [19]
       }
     }
   },
@@ -48,5 +51,6 @@
       "max": 1
     }
   ],
-  "buoyancy": 0.9
+  "buoyancy": 0.9,
+  "dead_float": false
 }

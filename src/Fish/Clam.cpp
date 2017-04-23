@@ -10,6 +10,9 @@ Clam::Clam(engine::Scene* scene) : Fish(scene) {
 
 void Clam::OnUpdate(sf::Time interval) {
 	Fish::OnUpdate(interval);
+	if (m_dead) {
+		return;
+	}
 	bool open = GetAnimationName() == "open";
 	bool shouldOpen = false;
 	if (CanDrop()) {

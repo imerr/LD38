@@ -10,7 +10,7 @@
 #include "Level.hpp"
 
 Fish::Fish(engine::Scene* scene) : Buoyant(scene), m_dropTimer(0), m_swimChance(-1), m_shouldFlip(false),
-								   m_pollutionTolerance(0.5), m_health(100), m_dead(false) {
+								   m_pollutionTolerance(0.5), m_health(10), m_dead(false), m_deadFloat(true) {
 	m_dropDeleteHandler = new engine::EventHandlerWrapper<void, engine::Node*>([this](engine::Node* node) {
 		for (Drop& drop : m_drops) {
 			if (drop.activeDrops.erase(node) > 0) {
@@ -72,7 +72,8 @@ bool Fish::initialize(Json::Value& root) {
 	m_swimChance = root.get("swim_chance", -1.0).asFloat();
 	m_shouldFlip = root.get("should_flip", false).asBool();
 	m_pollutionTolerance = root.get("pollution_tolerance", 0.5).asFloat();
-	m_health = root.get("health", 100).asFloat();
+	m_health = root.get("health", m_health).asFloat();
+	m_deadFloat = root.get("dead_float", true).asBool();
 	return true;
 }
 
@@ -153,7 +154,12 @@ void Fish::ChangeHealth(float amount) {
 	}
 	if (m_health < 0) {
 		m_dead = true;
-		m_buoyancy = 1.2;
-		SetVFlipped(true);
+		if (m_deadFloat) {
+			m_buoyancy = 1.05;
+			SetVFlipped(true);
+		}
+		if (m_animations.find("dead") != m_animations.end()) {
+			PlayAnimation("dead");
+		}
 	}
 }

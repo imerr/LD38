@@ -27,6 +27,7 @@ protected:
 	float m_pollutionTolerance;
 	float m_health;
 	bool m_dead;
+	bool m_deadFloat;
 public:
 	Fish(engine::Scene* scene);
 	virtual ~Fish();
@@ -41,6 +42,7 @@ public:
 	void TryDrop();
 
 	void ChangeHealth(float amount);
+
 };
 
 

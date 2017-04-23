@@ -41,6 +41,9 @@ bool Level::InWater(sf::Vector2f point) {
 
 void Level::AddPollution(float pollution) {
 	m_pollution += pollution;
+	if (m_pollution < 0) {
+		m_pollution = 0;
+	}
 	float pollutionPct = GetPollutionPct();
 	sf::Color color = engine::blendValueWithEasing(sf::Color::White, sf::Color(118, 40, 0), pollutionPct, 1,
 												   engine::EasingLinear);
