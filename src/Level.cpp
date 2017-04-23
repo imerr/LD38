@@ -99,5 +99,8 @@ void Level::PostUpdate(sf::Time interval) {
 	if (m_pollution < 0) {
 		m_pollution = 0;
 	}
+	if (m_pollution > 1000) {
+		m_pollution = 1000;
+	}
 	m_lastPollution = m_pollution;
 }

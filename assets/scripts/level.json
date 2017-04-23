@@ -105,11 +105,27 @@
         },
         {
           "position": [340, 0],
-          "childData": "assets/scripts/fish_goldfish.json"
+          "childData": "assets/scripts/fish_goldfish_red.json"
         },
         {
           "position": [390, 0],
-          "childData": "assets/scripts/fish_goldfish.json"
+          "childData": "assets/scripts/fish_goldfish_green.json"
+        },
+        {
+          "position": [390, 0],
+          "childData": "assets/scripts/fish_goldfish_blue.json"
+        },
+        {
+          "position": [390, 0],
+          "childData": "assets/scripts/fish_goldfish_turquoise.json"
+        },
+        {
+          "position": [390, 0],
+          "childData": "assets/scripts/fish_goldfish_yellow.json"
+        },
+        {
+          "position": [390, 0],
+          "childData": "assets/scripts/fish_goldfish_purple.json"
         }
       ]
     },
